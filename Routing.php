@@ -6,8 +6,8 @@ class Routing {
             case 'login';
                 include 'public/views/login.html';
                 break;
-            case 'dashboard':
-                include 'public/views/dashboard.html';
+            case 'register':
+                include 'public/views/register.html';
                 break;
             default:
                 include 'public/views/404.html';

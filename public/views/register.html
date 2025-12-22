@@ -4,28 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel ="stylesheet" type="text/css" href="public/styles/main.css">
-       <link rel ="stylesheet" type="text/css" href="public/styles/login.css">
-    <script src="public/scripts/main.js" defer></script>
-    <title>REGISTER</title>
+       <link rel ="stylesheet" type="text/css" href="public/styles/register.css">
+    <title>register</title>
 </head>
 <body>
- 
-
-    <form action="\register" method="POST">
-        <h1>login</h1>
-            <?php if(isset($messages)): ?>
-                <p class = messages>
-                    <?= $messages; ?>
-                </p>
-            <?php endif; ?>
-        <input name="email" type="email" placeholder="Twoj email" />
-        <input name="password" type="password" placeholder="Twoje haslo" />
-        <input name="password2" type="password" placeholder="Powtorz haslo" />
-
-        <input name="firstName" type = "text" placeholder="Podaj imie" />
-        <input name ="lastName" type = "text" placeholder="Podaj nazwsiko" />
-        <button type="submit">LOGIN</button>
-    </form>
-
+    <div class="background-overlay">
+        <header class="header">
+            <div class="logo-container">
+                <img src="public/uploaded/logo.png" alt="MyAdventure Logo" class="logo-icon">
+                <span class="logo-text">MyAdventure</span>
+            </div>
+            <hr class="header-divider">
+        </header>
+        <form action="/register" method="POST">
+            <h1>Create Your MyAdventure Account</h1>
+                <?php if(isset($messages)): ?>
+                    <p class = messages>
+                        <?= $messages; ?>
+                    </p>
+                <?php endif; ?>
+            <h4>Start tracking your adventures</h4>
+            
+            <div class="input-group">
+                <label>Name</label>
+                <input name="firstName" type = "text" placeholder="Enter your name" />
+                
+                <label>Email</label>
+                <input name="email" type="email" placeholder="Enter your email" />
+                
+                <label>Password</label>
+                <input name="password" type="password" placeholder="Enter your password" />
+                
+                <label>Confirm Password</label>
+                <input name="password2" type="password" placeholder="Confirm your password" />
+            </div>
+            <button type="submit" class="btn-signup">Sign Up</button>
+        </form>
+    </div>
 </body>
 </html>
