@@ -1,0 +1,174 @@
+/* home.css */
+
+.home-page {
+    height: 100vh;
+    overflow: hidden; /* Zapobiega przewijaniu całej strony, przewijamy tylko treść */
+}
+
+.app-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* --- LEWY PANEL (SIDEBAR) --- */
+.sidebar {
+    width: 280px;
+    background-color: rgba(12, 31, 7, 0.9); /* Ciemna zieleń pasująca do tła */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Poprawka dla nagłówka wewnątrz sidebaru */
+.sidebar .header {
+    position: relative; /* W home nie potrzebujemy absolutnego pozycjonowania */
+    align-items: flex-start;
+    padding: 1.5rem 1rem 0 1rem;
+    top: 0;
+}
+
+.sidebar .header-divider {
+    width: 90%;
+    margin: 1rem 0;
+}
+
+/* Profil użytkownika */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.user-name {
+    font-weight: bold;
+    color: white;
+    font-size: 0.95rem;
+}
+
+.user-email {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+/* Nawigacja w sidebarze */
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+    flex-grow: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.8rem 1rem;
+    color: #ccc;
+    text-decoration: none;
+    border-radius: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+    background-color: rgba(88, 194, 125, 0.15); /* Półprzezroczyste tło aktywne */
+    color: var(--primary-green);
+}
+
+.btn-add-trip {
+    background-color: var(--primary-green);
+    color: #0c1f07;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.8rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-add-trip:hover {
+    transform: scale(1.02);
+}
+
+.sidebar-bottom {
+    padding: 0 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1rem;
+}
+
+/* --- GŁÓWNA TREŚĆ (CONTENT) --- */
+.main-content {
+    flex: 1;
+    padding: 2.5rem 4rem;
+    overflow-y: auto; /* Tylko lista przygód się przewija */
+    background-color: transparent;
+}
+
+.main-content h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    color: white;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+}
+
+.trips-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Karta wyprawy */
+.trip-card {
+    background: rgba(255, 255, 255, 0.03); /* Bardzo delikatne tło karty */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.2rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.trip-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.trip-details h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.trip-info {
+    color: #888;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.trip-date {
+    color: #555;
+    font-size: 0.8rem;
+}
+
+/* Podgląd mapy na karcie */
+.trip-map-preview {
+    width: 180px;
+    height: 100px;
+    background-color: #1a1a1a;
+    border-radius: 0.8rem;
+    overflow: hidden;
+}
+
+.trip-map-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}

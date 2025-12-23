@@ -9,6 +9,9 @@ class Routing {
             case 'register':
                 include 'public/views/register.html';
                 break;
+            case 'home':
+                include 'public/views/home.html';
+                break;
             default:
                 include 'public/views/404.html';
                 break;
