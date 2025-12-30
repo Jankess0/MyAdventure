@@ -3,7 +3,7 @@
 class Routing {
     public static function run(string $path){
         switch($path){
-            case 'login';
+            case 'login':
                 include 'public/views/login.html';
                 break;
             case 'register':
