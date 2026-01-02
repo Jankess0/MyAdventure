@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel ="stylesheet" type="text/css" href="public/styles/main.css">
-       <link rel ="stylesheet" type="text/css" href="public/styles/home.css">
-    <title>home</title>
+       <link rel ="stylesheet" type="text/css" href="public/styles/new_trip.css">
+    <title>new_trip</title>
 </head>
 <body class="home-page">
     <div class="app-container">
@@ -17,7 +17,7 @@
                 </div>
                 <hr class="header-divider">
             </header>
-            <div>
+            <div class="sidebar-content">
                 <div class="user-profile">
                     <span class="user-name">John Doe</span>
                     <span class="user-email">john.doe@email.com</span>
@@ -47,30 +47,44 @@
             </div>
         </aside>
         <main class="main-content">
-            <h1>My Adventures</h1>
+            <h1>Add New Adventure</h1>
             
-            <div class="trips-container">
-                <div class="trip-card">
-                    <div class="trip-details">
-                        <h3>Hike to Mount Evans</h3>
-                        <p class="trip-info">12.5 km • 1,200 m</p>
-                        <span class="trip-date">July 15, 2023</span>
+            <div class="new-adventure-card">
+                
+                <button class="btn-add-trip">
+                    <span>📄 Upload GPX file</span>
+                </button>
+                
+                <form class="adventure-form">
+                    <div class="form-group">
+                        <label>Trip Title</label>
+                        <input type="text" placeholder="Enter trip title">
                     </div>
-                    <div class="trip-map-preview">
-                        <img src="public/uploaded/map-placeholder.png" alt="Map View">
-                    </div>
-                </div>
 
-                <div class="trip-card">
-                    <div class="trip-details">
-                        <h3>Sunrise at Pikes Peak</h3>
-                        <p class="trip-info">8.2 km • 950 m</p>
-                        <span class="trip-date">June 28, 2023</span>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea rows="4" placeholder="How was your trip?"></textarea>
                     </div>
-                    <div class="trip-map-preview">
-                        <img src="public/uploaded/map-placeholder.png" alt="Map View">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date">
+                        </div>
+                        <div class="form-group">
+                            <label>Difficulty</label>
+                            <select>
+                                <option>Easy</option>
+                                <option selected>Moderate</option>
+                                <option>Hard</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-add-trip">Cancel</button>
+                        <button type="submit" class="btn-add-trip">Save</button>
+                    </div>
+                </form>
             </div>
         </main>
     </div>

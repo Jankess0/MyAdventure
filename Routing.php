@@ -12,6 +12,9 @@ class Routing {
             case 'home':
                 include 'public/views/home.html';
                 break;
+            case 'new_trip':
+                include 'public/views/new_trip.html';
+                break;
             default:
                 include 'public/views/404.html';
                 break;
