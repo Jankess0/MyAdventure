@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" type="text/css" href="public/styles/main.css">
+       <link rel ="stylesheet" type="text/css" href="public/styles/stats.css">
+    <title>stats</title>
+</head>
+<body class="home-page">
+    <div class="app-container">
+        <aside class="sidebar">
+            <header class="header">
+                <div class="logo-container">
+                    <img src="public/uploaded/logo.png" class="logo-icon">
+                    <span class="logo-text">MyAdventure</span>
+                </div>
+                <hr class="header-divider">
+            </header>
+            <div class="sidebar-content">
+                <div class="user-profile">
+                    <span class="user-name">John Doe</span>
+                    <span class="user-email">john.doe@email.com</span>
+                </div>
+                <nav class="side-nav">
+                    <a href="#" class="nav-item active">
+                        <img src="public/uploaded/curve_icon.png" class="icon">
+                        <span>My Trips</span> 
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="public/uploaded/stats_icon.png" class="icon">
+                        <span>Stats</span>
+                    </a>                       
+                            
+                    <button class="btn-add-trip">Add New Trip</button>
+                </nav>
+            </div>
+            <div class="side-bottom">
+                <a href="#" class="nav-item">
+                    <img src="public/uploaded/settings_icon.png" class="icon">
+                    <span>Settings</span>
+                </a>
+                <a href="#" class="nav-item logout">
+                    <img src="public/uploaded/logout_icon.png" class="icon">
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <main class="main-content">
+           <h1>My Hiking Statistics</h1>
+            <div class="stats-grid">
+                <div class="stats-card large">
+                    <span class="stats-label">Yearly Distance</span>
+                    <div class="stats-value">842 km</div>
+                    <div class="stats-trend">2024 <span class="trend-up">↑ +15%</span></div>
+                    </div>
+
+                <div class="stats-card small">
+                    <span class="stats-label">Total trips</span>
+                    <div class="stats-value">42</div>
+                </div>
+
+                <div class="stats-card small">
+                    <span class="stats-label">Highest peak</span>
+                    <div class="stats-value">4,348 m</div>
+                </div>
+
+                <div class="stats-card small">
+                    <span class="stats-label">Elevation Gain</span>
+                    <div class="stats-value">24,670 m</div>
+                    <div class="stats-trend">2024 <span class="trend-up">↑ +22%</span></div>
+                </div>
+            </div> 
+        </main>
+    </div>
+</body>
+</html>
