@@ -33,4 +33,33 @@ class SecurityController extends AppController {
 
         return $this->render('login', ['messages'=> ['Registration successful!']]);
     }
+
+    public function login(){
+        if (!$this->isPost()) {
+            return $this->render('login');
+        }
+
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
+
+        if (empty($email) || empty($password)) {
+            return $this->render('login', ['messages'=> 'Fill all fields']);
+        }
+
+        $userRow = $this->userRepository->getUserByEmail($email);
+
+        if (!$userRow) {
+            return $this->render('login', ['messages'=> 'Failed to login']);
+        }
+
+        if (!password_verify($password, $userRow['password'])) {
+            return $this->render('login', ['messages'=> 'Failed to login']);
+        }
+
+        session_start();
+        $_SESSION['user_id'] = $userRow['id'];
+
+        header("Location: /home");
+        exit();
+    }
 }
