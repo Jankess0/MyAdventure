@@ -1,27 +1,31 @@
 <?php
 
+require_once 'src/controllers/SecurityController.php';
+require_once 'src/controllers/TripController.php';
+
 class Routing {
+
+    public static $routes = [
+        'login' => ['controller' => 'SecurityController', 'action' => 'login'],
+        'register' => ['controller' => 'SecurityController', 'action' => 'register'],
+        'home' => ['controller' => 'TripController', 'action' => 'index'],
+        'stats' => ['controller' => 'TripController', 'action' => 'stats'],
+        'add_trip' => ['controller' => 'TripController', 'action' => 'add_trip']
+    ];
+    
     public static function run(string $path){
-        switch($path){
-            case 'login':
-                include 'public/views/login.html';
-                break;
-            case 'register':
-                include 'public/views/register.html';
-                break;
-            case 'home':
-                include 'public/views/home.html';
-                break;
-            case 'new_trip':
-                include 'public/views/new_trip.html';
-                break;
-            case 'stats':
-                include 'public/views/stats.html';
-                break;
-            default:
-                include 'public/views/404.html';
-                break;
+        $urlParts = explode("/", $path);
+        $action = $urlParts[0];
+
+        if (!array_key_exists($action, self::$routes)) {
+            include 'public/views/404.html';
+            return;
         }
 
+        $controller = self::$routes[$action]['controller'];
+        $method = self::$routes[$action]['action'];
+
+        $controllerObj = new $controller;
+        $controllerObj->$method();
     }
 }
