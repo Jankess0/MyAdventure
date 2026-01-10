@@ -19,4 +19,15 @@ class TripRepository extends Repository {
             $data['difficulty']
         ]);
     }
+
+    public function getTrips(int $userId) :array {
+        $query = $this->database->connect()->prepare('
+        SELECT * FROM trips WHERE user_id = :user_id ORDER BY date DESC
+        ');
+
+        $query->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $query->execute();
+
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

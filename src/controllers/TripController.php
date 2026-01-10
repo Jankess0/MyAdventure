@@ -14,7 +14,10 @@ class TripController extends AppController {
 
     public function index() {
         $this->checkSession();
-        $this->render('home');
+        $userId = $_SESSION['user_id'];
+        $trips = $this->tripRepository->getTrips($userId);
+
+        $this->render('home', ['trips'=> $trips]);
     }
 
     public function stats() {

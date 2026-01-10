@@ -32,7 +32,9 @@
                         <span>Stats</span>
                     </a>                       
                             
-                    <button class="btn-add-trip">Add New Trip</button>
+                    <button type="button" class="btn-add-trip" onclick="window.location.href='/new_trip'">
+                        Add New Trip
+                    </button>
                 </nav>
             </div>
             <div class="side-bottom">
@@ -50,27 +52,21 @@
             <h1>My Adventures</h1>
             
             <div class="trips-container">
+                <?php foreach ($trips as $trip): ?>
                 <div class="trip-card">
                     <div class="trip-details">
-                        <h3>Hike to Mount Evans</h3>
-                        <p class="trip-info">12.5 km • 1,200 m</p>
-                        <span class="trip-date">July 15, 2023</span>
+                        <h3><?= $trip['title']; ?></h3>
+                        <p class="trip-info">
+                            <span>📏 <?= $trip['distance']; ?> km</span> | 
+                            <span>⛰️ <?= $trip['elevation']; ?> m</span>
+                        </p>
+                        <p class="trip-date"><?= $trip['date']; ?></p>
                     </div>
                     <div class="trip-map-preview">
                         <img src="public/uploaded/map-placeholder.png" alt="Map View">
                     </div>
                 </div>
-
-                <div class="trip-card">
-                    <div class="trip-details">
-                        <h3>Sunrise at Pikes Peak</h3>
-                        <p class="trip-info">8.2 km • 950 m</p>
-                        <span class="trip-date">June 28, 2023</span>
-                    </div>
-                    <div class="trip-map-preview">
-                        <img src="public/uploaded/map-placeholder.png" alt="Map View">
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </main>
     </div>
