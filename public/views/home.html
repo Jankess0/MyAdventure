@@ -19,15 +19,15 @@
             </header>
             <div>
                 <div class="user-profile">
-                    <span class="user-name">John Doe</span>
-                    <span class="user-email">john.doe@email.com</span>
+                    <span class="user-name"><?= $user['firstName']; ?> <?= $user['lastName']; ?></span>
+                    <span class="user-email"><?= $user['email']; ?></span>
                 </div>
                 <nav class="side-nav">
-                    <a href="#" class="nav-item active">
+                    <a href="/home" class="nav-item <?= $_SERVER['REQUEST_URI'] == '/home' ? 'active' : '' ?>">
                         <img src="public/uploaded/curve_icon.png" class="icon">
                         <span>My Trips</span> 
                     </a>
-                    <a href="#" class="nav-item">
+                    <a href="/stats" class="nav-item <?= $_SERVER['REQUEST_URI'] == '/stats' ? 'active' : '' ?>">
                         <img src="public/uploaded/stats_icon.png" class="icon">
                         <span>Stats</span>
                     </a>                       
@@ -38,11 +38,7 @@
                 </nav>
             </div>
             <div class="side-bottom">
-                <a href="#" class="nav-item">
-                    <img src="public/uploaded/settings_icon.png" class="icon">
-                    <span>Settings</span>
-                </a>
-                <a href="#" class="nav-item logout">
+                <a href="/logout" class="nav-item logout">
                     <img src="public/uploaded/logout_icon.png" class="icon">
                     <span>Logout</span>
                 </a>

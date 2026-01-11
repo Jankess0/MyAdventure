@@ -8,6 +8,7 @@ class Routing {
     public static $routes = [
         'login' => ['controller' => 'SecurityController', 'action' => 'login'],
         'register' => ['controller' => 'SecurityController', 'action' => 'register'],
+        'logout' => ['controller' => 'SecurityController', 'action' => 'logout'],
         'home' => ['controller' => 'TripController', 'action' => 'index'],
         'stats' => ['controller' => 'TripController', 'action' => 'stats'],
         'new_trip' => ['controller' => 'TripController', 'action' => 'new_trip'],

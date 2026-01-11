@@ -17,19 +17,38 @@ class TripController extends AppController {
         $userId = $_SESSION['user_id'];
         $trips = $this->tripRepository->getTrips($userId);
 
-        $this->render('home', ['trips'=> $trips]);
+        $this->render('home', [
+            'trips'=> $trips,
+            'user' => [
+                'firstName' => $_SESSION['firstName'],
+                'lastName' => $_SESSION['lastName'],
+                'email' => $_SESSION['email']
+            ]
+        ]);
     }
 
     public function stats() {
         $this->checkSession();
-        $this->render('stats');
+        $this->render('stats', [
+            'user' => [
+                'firstName' => $_SESSION['firstName'],
+                'lastName' => $_SESSION['lastName'],
+                'email' => $_SESSION['email']
+            ]
+        ]);
     }
 
     public function new_trip() {
         $this->checkSession();
 
         if (!$this->isPost()) {
-            $this->render('new_trip');
+            $this->render('new_trip', [
+                'user' => [
+                'firstName' => $_SESSION['firstName'],
+                'lastName' => $_SESSION['lastName'],
+                'email' => $_SESSION['email']
+                ]
+            ]);
         }
 
         $title = $_POST['title'];

@@ -58,8 +58,20 @@ class SecurityController extends AppController {
 
         session_start();
         $_SESSION['user_id'] = $userRow['id'];
+        $_SESSION['firstName'] = $userRow['firstName'];
+        $_SESSION['lastName'] = $userRow['lastName'];
+        $_SESSION['email'] = $userRow['email'];
 
         header("Location: /home");
         exit();
+    }
+
+    public function logout() {
+    session_start();
+    session_unset();
+    session_destroy();
+    
+    header("Location: /login");
+    exit();
     }
 }
