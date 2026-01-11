@@ -32,7 +32,7 @@ class SecurityController extends AppController {
 
         if (!preg_match($passwordRegex, $password)) {
             return $this->render('register', ['messages' => [
-            'Password must be at least 8 characters long and contain at least one letter and one number.'
+            'Password must be at least 8 characters long, contain at least one letter, one number and contain at least one special character.'
         ]]);
         }
 
