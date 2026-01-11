@@ -58,6 +58,7 @@ class TripController extends AppController {
         $distance = $_POST['distance'] ?? 0;
         $elevation = $_POST['elevation'] ?? 0;
         $userId = $_SESSION['user_id'];
+        $max_elevation = $_POST['max_elevation'] ?? 0;
 
         if (empty($title) || empty($distance)) {
             return $this->render('new_trip', ['messages' => ['Upload GPX file and enter the Title']]);
@@ -69,7 +70,8 @@ class TripController extends AppController {
         'distance' => $distance,
         'elevation' => $elevation,
         'date' => $date,
-        'difficulty' => $difficulty
+        'difficulty' => $difficulty,
+        'max_elevation' => $max_elevation
         ];
 
         $this->tripRepository->addTrip(

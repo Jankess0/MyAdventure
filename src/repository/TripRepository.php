@@ -5,8 +5,8 @@ class TripRepository extends Repository {
 
     public function addTrip($userId, $data) {
         $query = $this->database->connect()->prepare('
-            INSERT INTO trips (user_id, title, description, distance, elevation, date, difficulty)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO trips (user_id, title, description, distance, elevation, date, difficulty, max_elevation)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ');
 
         $query->execute([
@@ -16,7 +16,8 @@ class TripRepository extends Repository {
             $data['distance'],
             $data['elevation'],
             $data['date'],
-            $data['difficulty']
+            $data['difficulty'],
+            $data['max_elevation']
         ]);
     }
 

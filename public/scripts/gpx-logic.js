@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (parser.tracks.length > 0) {
                         const track = parser.tracks[0];
 
+                        const elevationData = track.points.map(p => p.ele);
+                        const maxElevation = elevationData.length > 0 
+                            ? Math.max(...elevationData) 
+                            : 0;
+
                         const distance = (track.distance.total / 1000).toFixed(2); // km
                         const elevation = Math.round(track.elevation.pos || 0);    // m
 
@@ -24,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         document.getElementById('distance-hidden').value = distance;
                         document.getElementById('elevation-hidden').value = elevation;
+                        document.getElementById('max-elevation-hidden').value = maxElevation.toFixed(0);
                     } else {
                         alert("No tracks found in GPX!");
                     }
