@@ -127,6 +127,8 @@ class TripController extends AppController {
     }
 
     public function deleteTrip() {
+        $this->checkSession();
+        
         if (!$this->isPost()) {
             header("Location: /home");
             exit();

@@ -77,3 +77,15 @@ input:focus {
     cursor: pointer;
     margin-top: 1rem;
 }
+
+
+.btn-cancel {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2rem;
+    padding: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+}

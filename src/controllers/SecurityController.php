@@ -23,8 +23,25 @@ class SecurityController extends AppController {
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'] ?? '';
 
+        $passwordRegex = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/';
+
+        $user = $this->userRepository->getUserByEmail($email);
+        if ($user) {
+            return $this->render('register', ['messages' => ['User with this email already exists!']]);
+        }
+
+        if (!preg_match($passwordRegex, $password)) {
+            return $this->render('register', ['messages' => [
+            'Password must be at least 8 characters long and contain at least one letter and one number.'
+        ]]);
+        }
+
         if ($password !== $password2) {
             return $this->render('register', ['messages' => ['Passwords do not match!']]);
+        }
+
+        if (empty($email) || empty($password) || empty($password2) || empty($firstName) || empty($lastName)) {
+            return $this->render('register', ['messages'=> ['Fill all fields']]);
         }
 
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -43,20 +60,25 @@ class SecurityController extends AppController {
         $password = $_POST['password'] ?? '';
 
         if (empty($email) || empty($password)) {
-            return $this->render('login', ['messages'=> 'Fill all fields']);
+            return $this->render('login', ['messages'=> ['Fill all fields']]);
         }
 
         $userRow = $this->userRepository->getUserByEmail($email);
 
         if (!$userRow) {
-            return $this->render('login', ['messages'=> 'Failed to login']);
+            return $this->render('login', ['messages'=> ['Field to login']]);
         }
 
         if (!password_verify($password, $userRow['password'])) {
-            return $this->render('login', ['messages'=> 'Failed to login']);
+            return $this->render('login', ['messages'=> ['Failed to login']]);
         }
 
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        session_regenerate_id(true);
+
         $_SESSION['user_id'] = $userRow['id'];
         $_SESSION['firstName'] = $userRow['firstName'];
         $_SESSION['lastName'] = $userRow['lastName'];

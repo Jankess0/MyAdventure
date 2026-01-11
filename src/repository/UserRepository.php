@@ -26,8 +26,12 @@ class UserRepository extends Repository {
         $query->bindParam(':email', $email);
         $query->execute();
 
-        $users = $query->fetch(PDO::FETCH_ASSOC);
+        $user = $query->fetch(PDO::FETCH_ASSOC);
 
-        return $users;
+        if ($user === false) {
+        return null;
+        }
+
+        return $user;
     }
 }
