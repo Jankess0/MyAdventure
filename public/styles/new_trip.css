@@ -6,7 +6,7 @@
 }
 .new-adventure-card .btn-add-trip {
     width: auto;               
-    margin: 0 0 1.5rem 0;      
+    margin: 0 0 1rem 0;      
     padding: 0.6rem 1.5rem;   
     display: flex;
     align-items: center;
@@ -16,21 +16,16 @@
 }
 
 .upload-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    display: flex;         
+    flex-direction: row;   
+    gap: 15px;            
+    align-items: center;  
 }
 
-.btn-upload {
-    flex: 1;
-    padding: 1rem;
-    border-radius: 0.8rem;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
+.status {
+    color: #ccc;       
+    font-size: 0.6rem;    
 }
-
-.btn-gpx { background: var(--primary-green); color: #071B0B; }
 
 .form-group {
     margin-bottom: 1.5rem;

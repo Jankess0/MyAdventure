@@ -45,12 +45,18 @@
     font-size: 0.8rem;
 }
 
-.trip-map-preview {
-    width: 180px;
-    height: 100px;
-    background-color: #1a1a1a;
+.trip-image-preview {
+    width: 10rem;
+    height: 10rem;
+    background: #0c1f07;
     border-radius: 0.8rem;
     overflow: hidden;
+}
+
+.trip-image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
 }
 
 .trip-map-preview img {

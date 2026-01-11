@@ -68,6 +68,16 @@ class TripController extends AppController {
         if (empty($title) || empty($distance)) {
             return $this->render('new_trip', ['messages' => ['Upload GPX file and enter the Title']]);
         }
+        
+        $photoName = null;
+
+        if (isset($_FILES['photo']) && is_uploaded_file($_FILES['photo']['tmp_name'])) {
+            $photoName = time() . '_' . $_FILES['photo']['name'];
+
+            $destination = 'public/uploaded/photos/' . $photoName;
+            
+            move_uploaded_file($_FILES['photo']['tmp_name'], $destination);
+        }
 
         $data = [
         'title' => $title,
@@ -76,7 +86,8 @@ class TripController extends AppController {
         'elevation' => $elevation,
         'date' => $date,
         'difficulty' => $difficulty,
-        'max_elevation' => $max_elevation
+        'max_elevation' => $max_elevation,
+        'photo' => $photoName
         ];
 
         $this->tripRepository->addTrip(
@@ -101,7 +112,13 @@ class TripController extends AppController {
                 exit();
             }
 
-            return $this->render('new_trip', ['trip' => $trip]);
+            return $this->render('new_trip', [
+                'trip' => $trip,
+                'user' => [
+                    'firstName' => $_SESSION['firstName'],
+                    'lastName' => $_SESSION['lastName'],
+                    'email' => $_SESSION['email']
+            ]]);
         }
 
         $id = $_POST['id'];
@@ -117,7 +134,12 @@ class TripController extends AppController {
             $trip = $this->tripRepository->getTrip($id);
             return $this->render('new_trip', [
                 'trip' => $trip, 
-                'messages' => ['Title cannot be empty!']
+                'messages' => ['Title cannot be empty!'],
+                'user' => [ 
+                    'firstName' => $_SESSION['firstName'],
+                    'lastName' => $_SESSION['lastName'],
+                    'email' => $_SESSION['email']
+                ]
             ]);
         }
 
@@ -128,14 +150,13 @@ class TripController extends AppController {
 
     public function deleteTrip() {
         $this->checkSession();
-        
+
         if (!$this->isPost()) {
             header("Location: /home");
             exit();
         }
 
         $id = $_POST['id'];
-        session_start();
         $userId = $_SESSION['user_id'];
 
         if ($id) {
@@ -148,7 +169,9 @@ class TripController extends AppController {
     }
 
     private function checkSession() {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         if (!isset($_SESSION['user_id'])) {
             header("Location: /login");
             exit();

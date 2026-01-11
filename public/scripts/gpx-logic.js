@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+
     const gpxInput = document.getElementById('gpx-input');
 
     if (gpxInput) {
@@ -40,4 +41,9 @@ document.addEventListener('DOMContentLoaded', function () {
             reader.readAsText(file);
         });
     }
+});
+
+document.getElementById('photo-input').addEventListener('change', function() {
+    const name = this.files[0] ? this.files[0].name : "null";
+    document.getElementById('photo-status').innerText = "✅ Photo " + name;
 });

@@ -47,16 +47,7 @@
             
             <div class="new-adventure-card">
                 <?php if(!isset($trip)): ?>
-                <div class="upload-section">
-                    <button type="button" class="btn-add-trip" onclick="document.getElementById('gpx-input').click()">
-                        <span>📄 Upload GPX file</span>
-                    </button>
-                    
-                    <input type="file" id="gpx-input" accept=".gpx" style="display:none;">
-                    
-                    <p id="file-status" style="margin-top: 10px; color: green;"></p>
-                </div>
-
+            
                 <div class="messages">
                     <?php if(isset($messages)): ?>
                         <?php foreach($messages as $message): ?>
@@ -66,7 +57,23 @@
                 </div>
                 <?php endif; ?>
                 
-                <form class="adventure-form" action="<?= isset($trip) ? '/edit_trip' : '/new_trip' ?>" method="POST">
+                <form class="adventure-form" action="<?= isset($trip) ? '/edit_trip' : '/new_trip' ?>" method="POST" enctype="multipart/form-data">
+                    <div class="upload-buttons">
+                        <button type="button" class="btn-add-trip" onclick="document.getElementById('gpx-input').click()">
+                            <span>📄 Upload GPX</span>
+                        </button>
+                        <input type="file" id="gpx-input" name="gpx" accept=".gpx" style="display:none;">
+
+                        <button type="button" class="btn-add-trip" onclick="document.getElementById('photo-input').click()">
+                            <span>📷 Add Photo</span>
+                        </button>
+                        <input type="file" id="photo-input" name="photo" accept="image/*" style="display:none;">
+    
+                    </div>
+
+                    <p id="file-status" class="status"></p>
+                    <p id="photo-status" class="status"></p>
+
                     <?php if(isset($trip)): ?>
                         <input type="hidden" name="id" value="<?= $trip['id'] ?>">
                     <?php endif; ?>                   

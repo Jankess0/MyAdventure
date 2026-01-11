@@ -74,8 +74,12 @@
                             <button type="submit" class="btn-delete">Delete</button>
                         </form>
                     </div>
-                    <div class="trip-map-preview">
-                        <img src="public/uploaded/map-placeholder.png" alt="Map View">
+                    <div class="trip-image-preview">
+                        <?php if (!empty($trip['photo'])): ?>
+                            <img src="public/uploaded/photos/<?= $trip['photo']; ?>" alt="Trip photo">
+                        <?php else: ?>
+                            <img src="public/img/default-placeholder.jpg" alt="No photo available">
+                        <?php endif; ?>
                     </div>
                 </div>
                 <?php endforeach; ?>
