@@ -63,6 +63,62 @@ class TripController extends AppController {
 
     }
 
+    public function editTrip() {
+        $this->checkSession();
+
+        if (!$this->isPost()) {
+            $id = $_GET['id'];
+            $trip = $this->tripRepository->getTrip($id);
+            
+            if (!$trip || $trip['user_id'] !== $_SESSION['user_id']) {
+                header("Location: /home");
+                exit();
+            }
+
+            return $this->render('new_trip', ['trip' => $trip]);
+        }
+
+        $id = $_POST['id'];
+        
+        $data = [
+            'title' => $_POST['title'] ?? null,
+            'description' => $_POST['description'] ?? null,
+            'date' => $_POST['date'] ?? null,
+            'difficulty' => $_POST['difficulty'] ?? null
+        ];
+
+        if (empty($data['title'])) {
+            $trip = $this->tripRepository->getTrip($id);
+            return $this->render('new_trip', [
+                'trip' => $trip, 
+                'messages' => ['Title cannot be empty!']
+            ]);
+        }
+
+        $this->tripRepository->updateTrip($id, $data);
+        header("Location: /home");
+        exit();
+    }
+
+    public function deleteTrip() {
+        if (!$this->isPost()) {
+            header("Location: /home");
+            exit();
+        }
+
+        $id = $_POST['id'];
+        session_start();
+        $userId = $_SESSION['user_id'];
+
+        if ($id) {
+            $this->tripRepository->deleteTrip((int)$id, $userId);
+        }
+        
+        header("Location: /home");
+        exit();
+        
+    }
+
     private function checkSession() {
         session_start();
         if (!isset($_SESSION['user_id'])) {

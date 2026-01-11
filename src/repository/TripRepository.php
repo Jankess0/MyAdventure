@@ -30,4 +30,38 @@ class TripRepository extends Repository {
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getTrip(int $id) {
+        $query = $this->database->connect()->prepare('
+            SELECT * FROM trips WHERE id = :id
+        ');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+        return $query->fetch(PDO::FETCH_ASSOC);
+    
+    }
+
+    public function updateTrip(int $id, array $data) {
+        $query = $this->database->connect()->prepare('
+            UPDATE trips 
+            SET title = :title, description = :description, date = :date, difficulty = :difficulty 
+            WHERE id = :id
+        ');
+        $query->bindParam(':title', $data['title'], PDO::PARAM_STR);
+        $query->bindParam(':description', $data['description'], PDO::PARAM_STR);
+        $query->bindParam(':date', $data['date'], PDO::PARAM_STR);
+        $query->bindParam(':difficulty', $data['difficulty'], PDO::PARAM_STR);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+    }
+
+    public function deleteTrip(int $id, int $userId) {
+        $query = $this->database->connect()->prepare('
+            DELETE FROM trips WHERE id = :id AND user_id = :user_id
+        ');
+
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->bindParam('user_id', $userId, PDO::PARAM_INT);
+        $query->execute();
+    }
 }

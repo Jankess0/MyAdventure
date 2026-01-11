@@ -50,7 +50,7 @@
             <h1>Add New Adventure</h1>
             
             <div class="new-adventure-card">
-                
+                <?php if(!isset($trip)): ?>
                 <div class="upload-section">
                     <button type="button" class="btn-add-trip" onclick="document.getElementById('gpx-input').click()">
                         <span>📄 Upload GPX file</span>
@@ -68,41 +68,41 @@
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
+                <?php endif; ?>
                 
-                <form class="adventure-form" action="/new_trip" method="POST">                   
+                <form class="adventure-form" action="<?= isset($trip) ? '/edit_trip' : '/new_trip' ?>" method="POST">
+                    <?php if(isset($trip)): ?>
+                        <input type="hidden" name="id" value="<?= $trip['id'] ?>">
+                    <?php endif; ?>                   
                     <div class="form-group">
-                        <div>
-                            <label id="distance-display">Distance: 0.00 km</label>
-                        </div>
-                        <div>
-                            <label id="elevation-display">Elevation: 0 m</label>
-                        </div>
+                        <label id="distance-display">Distance: <?= $trip['distance'] ?? '0.00' ?> km</label>    
+                        <label id="elevation-display"> Elevation: <?= $trip['elevation'] ?? '0' ?> m</label>
                     </div>
 
-                    <input type="hidden" name="distance" id="distance-hidden">
-                    <input type="hidden" name="elevation" id="elevation-hidden">
+                    <input type="hidden" name="distance" id="distance-hidden" value="<?= $trip['distance'] ?? '' ?>">
+                    <input type="hidden" name="elevation" id="elevation-hidden" value="<?= $trip['elevation'] ?? '' ?>">
 
                     <div class="form-group">
                         <label>Trip Title</label>
-                        <input type="text" name="title" placeholder="Enter trip title">
+                        <input type="text" name="title" value="<?= $trip['title'] ?? '' ?>" placeholder="Enter trip title">
                     </div>
 
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea name="description" rows="4" placeholder="How was your trip?"></textarea>
+                        <textarea name="description" rows="4" placeholder="How was your trip?"><?= $trip['description'] ?? '' ?></textarea>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label>Date</label>
-                            <input type="date" name="date">
+                            <input type="date" name="date" value="<?= $trip['date'] ?? '' ?>">
                         </div>
                         <div class="form-group">
                             <label>Difficulty</label>
                             <select name="difficulty">
-                                <option>Easy</option>
-                                <option selected>Moderate</option>
-                                <option>Hard</option>
+                                <option value="Easy" <?= ($trip['difficulty'] ?? '') == 'Easy' ? 'selected' : '' ?>>Easy</option>
+                                <option value="Moderate" <?= ($trip['difficulty'] ?? '') == 'Moderate' ? 'selected' : '' ?>>Moderate</option>
+                                <option value="Hard" <?= ($trip['difficulty'] ?? '') == 'Hard' ? 'selected' : '' ?>>Hard</option>
                             </select>
                         </div>
                     </div>

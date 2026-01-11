@@ -10,7 +10,9 @@ class Routing {
         'register' => ['controller' => 'SecurityController', 'action' => 'register'],
         'home' => ['controller' => 'TripController', 'action' => 'index'],
         'stats' => ['controller' => 'TripController', 'action' => 'stats'],
-        'new_trip' => ['controller' => 'TripController', 'action' => 'new_trip']
+        'new_trip' => ['controller' => 'TripController', 'action' => 'new_trip'],
+        'delete_trip' => ['controller' => 'TripController', 'action' => 'deleteTrip'],
+        'edit_trip' => ['controller' => 'TripController', 'action' => 'editTrip']
     ];
     
     public static function run(string $path){
