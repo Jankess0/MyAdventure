@@ -42,6 +42,23 @@ class TripRepository extends Repository {
     
     }
 
+    public function getStats(int $userId): array {
+        $query = $this->database->connect()->prepare('
+            SELECT
+                COUNT(*) as total_trips,
+                COALESCE(SUM(distance), 0) as total_distance,
+                COALESCE(SUM(elevation), 0) as total_elevation,
+                COALESCE(MAX(max_elevation), 0) as highest_peak
+            FROM trips 
+            WHERE user_id = :user_id
+        ');
+
+        $query->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $query->execute();
+        
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function updateTrip(int $id, array $data) {
         $query = $this->database->connect()->prepare('
             UPDATE trips 

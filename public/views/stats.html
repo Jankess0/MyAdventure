@@ -46,25 +46,23 @@
            <h1>My Hiking Statistics</h1>
             <div class="stats-grid">
                 <div class="stats-card large">
-                    <span class="stats-label">Yearly Distance</span>
-                    <div class="stats-value">842 km</div>
-                    <div class="stats-trend">2024 <span class="trend-up">↑ +15%</span></div>
+                    <span class="stats-label">Total Distance</span>
+                    <div class="stats-value"><?= number_format($stats['total_distance'], 1, '.', ' '); ?> km</div>       
                     </div>
 
                 <div class="stats-card small">
                     <span class="stats-label">Total trips</span>
-                    <div class="stats-value">42</div>
+                    <div class="stats-value"><?= $stats['total_trips']; ?></div>
                 </div>
 
                 <div class="stats-card small">
                     <span class="stats-label">Highest peak</span>
-                    <div class="stats-value">4,348 m</div>
+                    <div class="stats-value"><?= number_format($stats['highest_peak'], 0, '.', ' '); ?> m a.s.l</div>
                 </div>
 
                 <div class="stats-card small">
-                    <span class="stats-label">Elevation Gain</span>
-                    <div class="stats-value">24,670 m</div>
-                    <div class="stats-trend">2024 <span class="trend-up">↑ +22%</span></div>
+                    <span class="stats-label">Total Elevation Gain</span>
+                    <div class="stats-value"><?= number_format($stats['total_elevation'], 0, '.', ' '); ?> m</div>
                 </div>
             </div> 
         </main>

@@ -29,7 +29,12 @@ class TripController extends AppController {
 
     public function stats() {
         $this->checkSession();
+        $userId = $_SESSION['user_id'];
+
+        $stats = $this->tripRepository->getStats($userId);
+
         $this->render('stats', [
+            'stats' => $stats,
             'user' => [
                 'firstName' => $_SESSION['firstName'],
                 'lastName' => $_SESSION['lastName'],
