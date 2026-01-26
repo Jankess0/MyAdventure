@@ -66,17 +66,24 @@ class AdminController extends AppController {
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
         $role = $_POST['role'];
+        $password = $_POST['password'];
 
         if (empty($firstName) || empty($lastName) || empty($role)) {
             header("Location: /users");
             exit();
         }
 
-        $this->userRepository->editUser($id, [
+        $updateData = [
             'firstName' => $firstName,
             'lastName' => $lastName,
             'role' => $role
-        ]);
+        ];
+
+        if (!empty($password)) {
+            $updateData['password'] = password_hash($password, PASSWORD_BCRYPT);
+        }
+
+        $this->userRepository->editUser($id, $updateData);
 
         header("Location: /users");
         exit();

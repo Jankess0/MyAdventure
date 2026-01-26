@@ -91,15 +91,24 @@ class UserRepository extends Repository {
     }
 
     public function editUser(int $id, array $data): void {
-        $query = $this->database->connect()->prepare('
-            UPDATE users
-            SET "firstName" = :firstName, "lastName" = :lastName, role = :role 
-            WHERE id = :id
-        ');
+        if (isset($data['password'])) {
+            $query = $this->database->connect()->prepare('
+                UPDATE users 
+                SET "firstName" = :firstName, "lastName" = :lastName, role = :role, password = :password
+                WHERE id = :id
+            ');
+            $query->bindParam(':password', $data['password']);
+        } else {
+            $query = $this->database->connect()->prepare('
+                UPDATE users 
+                SET "firstName" = :firstName, "lastName" = :lastName, role = :role 
+                WHERE id = :id
+            ');
+        }
 
         $query->bindParam(':firstName', $data['firstName']);
         $query->bindParam(':lastName', $data['lastName']);
-        $query->bindParam(':role', $data['role']); 
+        $query->bindParam(':role', $data['role']);
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         
         $query->execute();
