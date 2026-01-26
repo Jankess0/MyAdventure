@@ -25,27 +25,15 @@ class User {
         $this->id = $id;
     }
 
-    public function getEmail(): string {
-        return $this->email;
-    }
-    
-    public function getPassword(): string {
-        return $this->password;
-    }
+    public function getEmail(): string { return $this->email; }
 
-    public function getFirstName(): string {
-        return $this->firstName;
-    }
+    public function getPassword(): string { return $this->password; }
 
-    public function getLastName(): string {
-        return $this->lastName;
-    }
+    public function getFirstName(): string { return $this->firstName; }
 
-    public function getRole(): string {
-        return $this->role;
-    }
+    public function getLastName(): string { return $this->lastName; }
 
-    public function getId(): ?int {
-        return $this->id;
-    }
+    public function getRole(): string { return $this->role; }
+
+    public function getId(): ?int { return $this->id; }
 }

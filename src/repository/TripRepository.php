@@ -30,16 +30,51 @@ class TripRepository extends Repository {
         $query->bindParam(':user_id', $userId, PDO::PARAM_INT);
         $query->execute();
 
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        $trips = $query->fetchAll(PDO::FETCH_ASSOC);
+        $result = [];
+
+        foreach ($trips as $trip) {
+            $result[] = new Trip(
+                $trip['id'],
+                $trip['user_id'],
+                $trip['title'],
+                $trip['description'],
+                $trip['distance'],
+                $trip['elevation'],
+                $trip['date'],
+                $trip['difficulty'],
+                $trip['max_elevation'],
+                $trip['photo']
+            );
+        }
+
+        return $result;
     }
 
-    public function getTrip(int $id) {
+    public function getTrip(int $id): ?Trip {
         $query = $this->database->connect()->prepare('
             SELECT * FROM trips WHERE id = :id
         ');
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
-        return $query->fetch(PDO::FETCH_ASSOC);
+        $trip = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($trip === false){
+            return null;
+        }
+
+        return new Trip(
+            $trip['id'],
+            $trip['user_id'],
+            $trip['title'],
+            $trip['description'],
+            $trip['distance'],
+            $trip['elevation'],
+            $trip['date'],
+            $trip['difficulty'],
+            $trip['max_elevation'],
+            $trip['photo']
+        );
     
     }
 

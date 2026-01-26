@@ -2,6 +2,7 @@
 
 require_once 'AppController.php';
 require_once __DIR__. '/../repository/TripRepository.php';
+require_once __DIR__. '/../models/Trip.php';
 
 class TripController extends AppController {
 
@@ -107,7 +108,7 @@ class TripController extends AppController {
             $id = $_GET['id'];
             $trip = $this->tripRepository->getTrip($id);
             
-            if (!$trip || $trip['user_id'] !== $_SESSION['user_id']) {
+            if (!$trip || $trip->getId() !== $_SESSION['user_id']) {
                 header("Location: /home");
                 exit();
             }

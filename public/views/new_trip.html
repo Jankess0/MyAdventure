@@ -78,8 +78,8 @@
                         <input type="hidden" name="id" value="<?= $trip['id'] ?>">
                     <?php endif; ?>                   
                     <div class="form-group">
-                        <label id="distance-display">Distance: <?= $trip['distance'] ?? '0.00' ?> km</label>    
-                        <label id="elevation-display"> Elevation: <?= $trip['elevation'] ?? '0' ?> m</label>
+                        <label id="distance-display">Distance: <?= $trip->getDistance() ?? '0.00' ?> km</label>    
+                        <label id="elevation-display"> Elevation: <?= $trip->getElevation() ?? '0' ?> m</label>
                     </div>
 
                     <input type="hidden" name="distance" id="distance-hidden" value="<?= $trip['distance'] ?? '' ?>">
@@ -93,20 +93,20 @@
 
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea name="description" rows="4" placeholder="How was your trip?"><?= $trip['description'] ?? '' ?></textarea>
+                        <textarea name="description" rows="4" placeholder="How was your trip?"><?= isset($trip) ? $trip->getDescription() : '' ?></textarea>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label>Date</label>
-                            <input type="date" name="date" value="<?= $trip['date'] ?? '' ?>">
+                            <input type="date" name="date" value="<?= isset($trip) ? $trip->getDate() : '' ?>">
                         </div>
                         <div class="form-group">
                             <label>Difficulty</label>
                             <select name="difficulty">
-                                <option value="Easy" <?= ($trip['difficulty'] ?? '') == 'Easy' ? 'selected' : '' ?>>Easy</option>
-                                <option value="Moderate" <?= ($trip['difficulty'] ?? '') == 'Moderate' ? 'selected' : '' ?>>Moderate</option>
-                                <option value="Hard" <?= ($trip['difficulty'] ?? '') == 'Hard' ? 'selected' : '' ?>>Hard</option>
+                                <option value="Easy" <?= (isset($trip) && $trip->getDifficulty() == 'Easy') ? 'selected' : '' ?>>Easy</option>
+                                <option value="Moderate" <?= (isset($trip) && $trip->getDifficulty() == 'Moderate') ? 'selected' : '' ?>>Moderate</option>
+                                <option value="Hard" <?= (isset($trip) && $trip->getDifficulty() == 'Hard') ? 'selected' : '' ?>>Hard</option>
                             </select>
                         </div>
                     </div>
