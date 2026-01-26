@@ -30,7 +30,13 @@
                     <a href="/stats" class="nav-item <?= $_SERVER['REQUEST_URI'] == '/stats' ? 'active' : '' ?>">
                         <img src="public/uploaded/stats_icon.png" class="icon">
                         <span>Stats</span>
-                    </a>             
+                    </a> 
+                    <?php if(isset($user['role']) && $user['role'] === 'admin'): ?>
+                        <a href="/users" class="nav-item">
+                            <img src="public/uploaded/settings_icon.png" class="icon"> 
+                            <span>Users</span>
+                        </a>
+                    <?php endif; ?>            
                             
                     <button class="btn-add-trip">Add New Trip</button>
                 </nav>
@@ -75,20 +81,20 @@
                     <p id="photo-status" class="status"></p>
 
                     <?php if(isset($trip)): ?>
-                        <input type="hidden" name="id" value="<?= $trip['id'] ?>">
+                        <input type="hidden" name="id" value="<?= $trip->getId() ?>">
                     <?php endif; ?>                   
                     <div class="form-group">
-                        <label id="distance-display">Distance: <?= $trip->getDistance() ?? '0.00' ?> km</label>    
-                        <label id="elevation-display"> Elevation: <?= $trip->getElevation() ?? '0' ?> m</label>
+                        <label id="distance-display">Distance: <?= isset($trip) ? $trip->getDistance() : '0.00' ?> km</label>    
+                        <label id="elevation-display"> Elevation: <?= isset($trip) ? $trip->getElevation() : '0' ?> m</label>
                     </div>
 
-                    <input type="hidden" name="distance" id="distance-hidden" value="<?= $trip['distance'] ?? '' ?>">
-                    <input type="hidden" name="elevation" id="elevation-hidden" value="<?= $trip['elevation'] ?? '' ?>">
-                    <input type="hidden" name="max_elevation" id="max-elevation-hidden" value="<?= $trip['max_elevation'] ?? '' ?>">
+                    <input type="hidden" name="distance" id="distance-hidden" value="<?= isset($trip) ? $trip->getDistance() : '' ?>">
+                    <input type="hidden" name="elevation" id="elevation-hidden" value="<?= isset($trip) ? $trip->getElevation() : '' ?>">
+                    <input type="hidden" name="max_elevation" id="max-elevation-hidden" value="<?= isset($trip) ? $trip->getMaxElevation() : '' ?>">
 
                     <div class="form-group">
                         <label>Trip Title</label>
-                        <input type="text" name="title" value="<?= $trip['title'] ?? '' ?>" placeholder="Enter trip title">
+                        <input type="text" name="title" value="<?= isset($trip) ? $trip->getTitle() : '' ?>" placeholder="Enter trip title">
                     </div>
 
                     <div class="form-group">

@@ -23,7 +23,8 @@ class TripController extends AppController {
             'user' => [
                 'firstName' => $_SESSION['firstName'],
                 'lastName' => $_SESSION['lastName'],
-                'email' => $_SESSION['email']
+                'email' => $_SESSION['email'],
+                'role' => $_SESSION['role']
             ]
         ]);
     }
@@ -39,7 +40,8 @@ class TripController extends AppController {
             'user' => [
                 'firstName' => $_SESSION['firstName'],
                 'lastName' => $_SESSION['lastName'],
-                'email' => $_SESSION['email']
+                'email' => $_SESSION['email'],
+                'role' => $_SESSION['role']
             ]
         ]);
     }
@@ -52,8 +54,10 @@ class TripController extends AppController {
                 'user' => [
                 'firstName' => $_SESSION['firstName'],
                 'lastName' => $_SESSION['lastName'],
-                'email' => $_SESSION['email']
+                'email' => $_SESSION['email'],
+                'role' => $_SESSION['role']
                 ]
+                
             ]);
         }
 

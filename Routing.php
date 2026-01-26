@@ -2,6 +2,7 @@
 
 require_once 'src/controllers/SecurityController.php';
 require_once 'src/controllers/TripController.php';
+require_once 'src/controllers/AdminController.php';
 
 class Routing {
 
@@ -13,7 +14,12 @@ class Routing {
         'stats' => ['controller' => 'TripController', 'action' => 'stats'],
         'new_trip' => ['controller' => 'TripController', 'action' => 'new_trip'],
         'delete_trip' => ['controller' => 'TripController', 'action' => 'deleteTrip'],
-        'edit_trip' => ['controller' => 'TripController', 'action' => 'editTrip']
+        'edit_trip' => ['controller' => 'TripController', 'action' => 'editTrip'],
+        'users' => ['controller' => 'AdminController', 'action' => 'users'],
+        'delete_user' => ['controller' => 'AdminController', 'action' => 'deleteUser'],
+        'edit_user_form' => ['controller' => 'AdminController', 'action' => 'editUserForm'],
+        'edit_user' => ['controller' => 'AdminController', 'action' => 'editUser'],
+
     ];
     
     public static function run(string $path){

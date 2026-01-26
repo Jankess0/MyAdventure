@@ -30,9 +30,17 @@
                     <a href="/stats" class="nav-item <?= $_SERVER['REQUEST_URI'] == '/stats' ? 'active' : '' ?>">
                         <img src="public/uploaded/stats_icon.png" class="icon">
                         <span>Stats</span>
-                    </a>                       
+                    </a>
+                    <?php if(isset($user['role']) && $user['role'] === 'admin'): ?>
+                        <a href="/users" class="nav-item">
+                            <img src="public/uploaded/settings_icon.png" class="icon"> 
+                            <span>Users</span>
+                        </a>
+                    <?php endif; ?>                       
                             
-                    <button class="btn-add-trip">Add New Trip</button>
+                    <button type="button" class="btn-add-trip" onclick="window.location.href='/new_trip'">
+                        Add New Trip
+                    </button>
                 </nav>
             </div>
             <div class="side-bottom">

@@ -84,6 +84,7 @@ class SecurityController extends AppController {
         $_SESSION['firstName'] = $user->getFirstName();
         $_SESSION['lastName'] = $user->getLastName();
         $_SESSION['email'] = $user->getEmail();
+        $_SESSION['role'] = $user->getRole();
 
         header("Location: /home");
         exit();
