@@ -2,6 +2,7 @@
 
 require_once 'AppController.php';
 require_once __DIR__. '/../repository/UserRepository.php';
+require_once __DIR__. '/../models/User.php';
 
 class SecurityController extends AppController {
     
@@ -63,13 +64,13 @@ class SecurityController extends AppController {
             return $this->render('login', ['messages'=> ['Fill all fields']]);
         }
 
-        $userRow = $this->userRepository->getUserByEmail($email);
+        $user= $this->userRepository->getUserByEmail($email);
 
-        if (!$userRow) {
+        if (!$user) {
             return $this->render('login', ['messages'=> ['Field to login']]);
         }
 
-        if (!password_verify($password, $userRow['password'])) {
+        if (!password_verify($password, $user->getPassword())) {
             return $this->render('login', ['messages'=> ['Failed to login']]);
         }
 
@@ -79,10 +80,10 @@ class SecurityController extends AppController {
 
         session_regenerate_id(true);
 
-        $_SESSION['user_id'] = $userRow['id'];
-        $_SESSION['firstName'] = $userRow['firstName'];
-        $_SESSION['lastName'] = $userRow['lastName'];
-        $_SESSION['email'] = $userRow['email'];
+        $_SESSION['user_id'] = $user->getId();
+        $_SESSION['firstName'] = $user->getFirstName();
+        $_SESSION['lastName'] = $user->getLastName();
+        $_SESSION['email'] = $user->getEmail();
 
         header("Location: /home");
         exit();

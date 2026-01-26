@@ -1,24 +1,26 @@
 <?php
 
 require_once 'repository.php';
+require_once __DIR__.'/../models/User.php';
 
 class UserRepository extends Repository {
 
     public function createUser(string $email, string $password, string $firstName, string $lastName) : void {
         $query = $this->database->connect()->prepare('
-            INSERT INTO users (email, password, "firstName", "lastName")
-            VALUES (?, ?, ?, ?)
+            INSERT INTO users (email, password, "firstName", "lastName", role)
+            VALUES (?, ?, ?, ?, ?)
         ');
 
         $query->execute([
             $email,
             $password,
             $firstName,
-            $lastName
+            $lastName,
+            'user'
         ]);
     }
 
-    public function getUserByEmail(string $email) : ?array {
+    public function getUserByEmail(string $email) : ?User {
 
         $query = $this->database->connect()->prepare('
             SELECT * FROM users WHERE email = :email
@@ -32,6 +34,13 @@ class UserRepository extends Repository {
         return null;
         }
 
-        return $user;
+        return new User(
+            $user['email'],
+            $user['password'],
+            $user['firstName'],
+            $user['lastName'],
+            $user['role'],
+            $user['id']
+        );
     }
 }
