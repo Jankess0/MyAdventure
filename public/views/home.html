@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" type="text/css" href="public/styles/main.css">
+       <link rel ="stylesheet" type="text/css" href="public/styles/home.css">
+    <title>home</title>
+</head>
+<body class="home-page">
+    <div class="app-container">
+        <aside class="sidebar">
+            <header class="header">
+                <div class="logo-container">
+                    <img src="public/uploaded/logo.png" class="logo-icon">
+                    <span class="logo-text">MyAdventure</span>
+                </div>
+                <hr class="header-divider">
+            </header>
+            <div>
+                <div class="user-profile">
+                    <span class="user-name"><?= $user['firstName']; ?> <?= $user['lastName']; ?></span>
+                    <span class="user-email"><?= $user['email']; ?></span>
+                </div>
+                <nav class="side-nav">
+                    <a href="/home" class="nav-item <?= $_SERVER['REQUEST_URI'] == '/home' ? 'active' : '' ?>">
+                        <img src="public/uploaded/curve_icon.png" class="icon">
+                        <span>My Trips</span> 
+                    </a>
+                    <a href="/stats" class="nav-item <?= $_SERVER['REQUEST_URI'] == '/stats' ? 'active' : '' ?>">
+                        <img src="public/uploaded/stats_icon.png" class="icon">
+                        <span>Stats</span>
+                    </a>
+                    
+                    <?php if(isset($user['role']) && $user['role'] === 'admin'): ?>
+                        <a href="/users" class="nav-item">
+                            <img src="public/uploaded/settings_icon.png" class="icon"> 
+                            <span>Users</span>
+                        </a>
+                    <?php endif; ?>
+                            
+                    <button type="button" class="btn-add-trip" onclick="window.location.href='/new_trip'">
+                        Add New Trip
+                    </button>
+                </nav>
+            </div>
+            <div class="side-bottom">
+                <a href="/logout" class="nav-item logout">
+                    <img src="public/uploaded/logout_icon.png" class="icon">
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <h1>My Adventures</h1>
+            
+            <div class="trips-container">
+                <?php foreach ($trips as $trip): ?>
+                <div class="trip-card">
+                    <div class="trip-details">
+                        <h3><?= $trip->getTitle(); ?></h3>
+                        <p class="trip-info">
+                            <span><?= $trip->getDifficulty(); ?></span>
+                            <span>📏 <?= $trip->getDistance(); ?> km</span>
+                            <span>⛰️ <?= $trip->getElevation(); ?> m</span>   
+                        </p>
+                        <p class="trip-date"><?= $trip->getDate(); ?></p>
+                    </div>
+                    <div>
+                        <p class="trip-info">
+                            <span><?= $trip->getDescription(); ?></span>
+                        </p>
+                    </div>
+                    <div class="trip-actions">
+                        <form action="/edit_trip" method="POST">
+                            <input type="hidden" name="id" value="<?= $trip->getId(); ?>">
+                            <button type="submit" class="btn-edit">Edit</button>
+                        </form>
+                        <form action="/delete_trip" method="POST" onsubmit="return confirm('Do you want to delete this trip?');">
+                            <input type="hidden" name="id" value="<?= $trip->getId(); ?>">
+                            <button type="submit" class="btn-delete">Delete</button>
+                        </form>
+                    </div>
+                    <div class="trip-image-preview">
+                        <?php if (!empty($trip->getPhoto())): ?>
+                            <img src="/public/uploaded/photos/<?= $trip->getPhoto(); ?>" alt="Trip photo">
+                        <?php else: ?>
+                            <img src="/public/img/default-placeholder.jpg" alt="No photo available">
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

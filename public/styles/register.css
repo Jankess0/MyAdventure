@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: url('../uploaded/background.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+}
+
+.background-overlay {
+    background: rgba(12, 31, 7, 0.801); 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    background: transparent; 
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+}
+
+h1 {
+    color: white !important; 
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+h4 {
+    color: #58c27d;
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    color: whitesmoke;
+    font-size: 0.9rem;
+}
+
+input {
+    background: rgba(255, 255, 255, 0.1); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2rem; 
+    padding: 0.8rem 1.2rem;
+    color: white;
+    outline: none;
+}
+
+input::placeholder {
+    color: #58c27d;
+}
+
+input:focus {
+    border-color: #58c27d;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+.btn-signup {
+    background: #58c27d; 
+    color: #1a2a1d;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+
+.btn-cancel {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2rem;
+    padding: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.no-valid {
+    border: 2px solid red !important; 
+    background-color: #ffe5e5;
+    outline: none;
+}

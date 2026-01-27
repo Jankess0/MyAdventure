@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" type="text/css" href="public/styles/main.css">
+       <link rel ="stylesheet" type="text/css" href="public/styles/register.css">
+    <title>register</title>
+</head>
+<body>
+    <div class="background-overlay">
+        <form action="/register" method="POST">
+            <h4>Start tracking your adventures</h4>
+            
+            <div class="input-group">
+                <label>Name</label>
+                <input name="firstName" type = "text" placeholder="Enter your name" />
+
+                <label>Surname</label>
+                <input name="lastName" type = "text" placeholder="Enter your surname" />
+                
+                <label>Email</label>
+                <input name="email" type="email" placeholder="Enter your email" />
+                
+                <label>Password</label>
+                <input name="password" type="password" placeholder="Enter your password" />
+                
+                <label>Confirm Password</label>
+                <input name="password2" type="password" placeholder="Confirm your password" />
+            </div>
+            <button type="submit" class="btn-signup">Sign Up</button>
+            <button type="button" class="btn-cancel" onclick="window.location.href='/login'">Cancel</button>
+        </form>
+        <script src="public/scripts/validation.js" defer></script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+.new-adventure-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    max-width: 800px;
+}
+.new-adventure-card .btn-add-trip {
+    width: auto;               
+    margin: 0 0 1rem 0;      
+    padding: 0.6rem 1.5rem;   
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 2rem;     
+    font-size: 0.9rem;
+}
+
+.upload-buttons {
+    display: flex;         
+    flex-direction: row;   
+    gap: 15px;            
+    align-items: center;  
+}
+
+.status {
+    color: #ccc;       
+    font-size: 0.6rem;    
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;       
+    color: #ccc;       
+    font-size: 1rem;    
+    font-weight: 500;    
+    margin-bottom: 0.2rem; 
+}
+.form-buttons{
+    display: inline-flex;
+    gap: 1.5rem;
+}
+
+input, textarea, select {
+    width: 100%;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+}
+* {
+    box-sizing: border-box; 
+}
