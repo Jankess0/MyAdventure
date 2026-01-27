@@ -10,14 +10,6 @@
 <body>
     <div class="background-overlay">
         <form action="/register" method="POST">
-            <h1>Create Your MyAdventure Account</h1>
-            <div class="messages">
-                <?php if(isset($messages)): ?>
-                    <?php foreach($messages as $message): ?>
-                        <p><?= $message; ?></p>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
             <h4>Start tracking your adventures</h4>
             
             <div class="input-group">
@@ -31,11 +23,7 @@
                 <input name="email" type="email" placeholder="Enter your email" />
                 
                 <label>Password</label>
-                <input name="password" type="password" 
-                        placeholder="Enter your password" 
-                        required 
-                        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\W_]{8,}$"
-                        title="Min. 8 characters, at least one letter and one number and one special character.">
+                <input name="password" type="password" placeholder="Enter your password" />
                 
                 <label>Confirm Password</label>
                 <input name="password2" type="password" placeholder="Confirm your password" />
@@ -43,6 +31,7 @@
             <button type="submit" class="btn-signup">Sign Up</button>
             <button type="button" class="btn-cancel" onclick="window.location.href='/login'">Cancel</button>
         </form>
+        <script src="public/scripts/validation.js" defer></script>
     </div>
 </body>
 </html>

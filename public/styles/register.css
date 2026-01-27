@@ -89,3 +89,9 @@ input:focus {
     cursor: pointer;
     margin-top: 1rem;
 }
+
+.no-valid {
+    border: 2px solid red !important; 
+    background-color: #ffe5e5;
+    outline: none;
+}
