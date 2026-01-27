@@ -6,6 +6,7 @@ MyAdventure is a web application that allows users to track their trips, analyze
 
 ### User Panel
 * **Authentication:** Secure Login and Registration system.
+
 ![alt text](docs/image-2.png)
 ![alt text](docs/image-1.png)
 
