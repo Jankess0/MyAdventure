@@ -54,9 +54,32 @@ const delay = 1000;
 emailInput.addEventListener('keyup', function() {
     clearTimeout(timeouts.email); 
     
-    timeouts.email = setTimeout(function() {
-        const isValid = isEmail(emailInput.value);
-        markValidation(emailInput, isValid);
+timeouts.email = setTimeout(function() {
+        const email = emailInput.value;
+        const isValidSyntax = isEmail(email);
+        
+        if (!isValidSyntax) {
+            markValidation(emailInput, false);
+            return;
+        }
+
+        fetch('/check_email_exists', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.exists) {
+                alert("Ten email jest już zajęty!");
+                markValidation(emailInput, false);
+            } else {
+                markValidation(emailInput, true);
+            }
+        })
+        .catch(error => console.error('Error:', error));
     }, delay);
 });
 

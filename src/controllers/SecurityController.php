@@ -90,6 +90,25 @@ class SecurityController extends AppController {
         exit();
     }
 
+    public function checkEmailIfExists() {
+    $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+    
+    if ($contentType === "application/json") {
+        $content = trim(file_get_contents("php://input"));
+        $decoded = json_decode($content, true);
+        
+        header('Content-Type: application/json');
+
+        if (isset($decoded['email'])) {
+            $user = $this->userRepository->getUserByEmail($decoded['email']);
+            echo json_encode(['exists' => $user !== null]);
+        } else {
+            echo json_encode(['exists' => false]);
+        }
+        exit(); // Ważne: zatrzymaj skrypt tutaj
+    }
+}
+
     public function logout() {
     session_start();
     session_unset();

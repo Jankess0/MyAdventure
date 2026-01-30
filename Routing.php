@@ -19,6 +19,7 @@ class Routing {
         'delete_user' => ['controller' => 'AdminController', 'action' => 'deleteUser'],
         'edit_user_form' => ['controller' => 'AdminController', 'action' => 'editUserForm'],
         'edit_user' => ['controller' => 'AdminController', 'action' => 'editUser'],
+        'check_email_exists' => ['controller' => 'SecurityController', 'action' => 'checkEmailIfExists']
 
     ];
     
